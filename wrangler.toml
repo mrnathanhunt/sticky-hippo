@@ -1,0 +1,4 @@
+name = "sticky-hippo"
+compatibility_date = "2026-09-06"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = "dist"
