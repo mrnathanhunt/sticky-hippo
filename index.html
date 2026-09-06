@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sticky Hippo — the hippo that sticks</title>
+    <meta name="description" content="the hippo that sticks. unofficial $HIPPO solana meme. not the sticker shop." />
+    <meta property="og:title" content="Sticky Hippo" />
+    <meta property="og:description" content="the hippo that sticks. unofficial $HIPPO solana meme." />
+    <meta property="og:image" content="/og.jpg" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="preload" href="/Fredoka.ttf" as="font" type="font/ttf" crossorigin />
+    <style>
+      @font-face {
+        font-family: Fredoka;
+        src: url(/Fredoka.ttf) format("truetype");
+        font-weight: 400 700;
+        font-display: swap;
+      }
+      :root {
+        --cream: #f6f0dc;
+        --navy: #17324a;
+        --blue: #2f7cf6;
+        --green: #2f6b12;
+        --lime: #b8e62e;
+        --muted: #5c6b75;
+        --paper: #fffaf0;
+      }
+      * { box-sizing: border-box; }
+      html, body { margin: 0; background: var(--cream); color: var(--navy); font-family: ui-sans-serif, system-ui, sans-serif; }
+      .display { font-family: Fredoka, ui-sans-serif, system-ui, sans-serif; text-transform: uppercase; letter-spacing: -0.03em; }
+      a { color: inherit; }
+      header {
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 16px 24px; max-width: 72rem; margin: 0 auto;
+      }
+      .mark { font-size: 1.25rem; text-decoration: none; }
+      .mark .s { color: var(--blue); }
+      .mark .h { color: var(--green); }
+      nav { display: flex; gap: 12px; font-size: 0.8rem; }
+      nav a { text-decoration: none; opacity: 0.7; }
+      .chip {
+        display: inline-flex; align-items: center; gap: 8px;
+        background: var(--navy); color: var(--lime);
+        border-radius: 8px; padding: 6px 10px; font-size: 0.75rem;
+      }
+      main { max-width: 72rem; margin: 0 auto; padding: 24px; }
+      .hero { display: grid; gap: 32px; align-items: center; }
+      @media (min-width: 900px) { .hero { grid-template-columns: 1.05fr 0.95fr; padding: 32px 0 48px; } }
+      h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 0.9; margin: 12px 0 0; }
+      .blurb { max-width: 28rem; font-size: 1.125rem; line-height: 1.6; color: var(--muted); }
+      .row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px; }
+      .btn {
+        display: inline-flex; align-items: center; justify-content: center;
+        height: 48px; padding: 0 22px; border-radius: 8px; text-decoration: none;
+        font-size: 1rem; border: 0; cursor: pointer;
+      }
+      .btn-gold { background: #c49a4a; color: var(--paper); }
+      .btn-line { background: transparent; box-shadow: inset 0 0 0 1px color-mix(in oklab, var(--navy) 28%, transparent); }
+      .stage { width: 100%; max-width: 36rem; margin: 0 auto; }
+      canvas, .stage img { width: 100%; border-radius: 12px; outline: 1px solid color-mix(in oklab, var(--navy) 15%, transparent); outline-offset: -1px; }
+      .panel { margin-top: 16px; background: #efe8d2; border-radius: 12px; padding: 18px 20px; }
+      .swatches { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; align-items: center; }
+      .swatch { width: 44px; height: 44px; border-radius: 8px; border: 0; cursor: pointer; outline: 1px solid color-mix(in oklab, var(--navy) 15%, transparent); }
+      .swatch[aria-pressed="true"] { outline: 2px solid #c49a4a; }
+      section { padding: 48px 0; }
+      h2 { font-size: 2rem; margin: 0 0 12px; }
+      .legal { font-size: 0.85rem; color: var(--muted); max-width: 40rem; line-height: 1.55; }
+      footer { padding: 32px 24px 48px; text-align: center; color: var(--muted); font-size: 0.8rem; }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a class="mark display" href="/"><span class="s">sticky</span> <span class="h">hippo.com</span></a>
+      <span class="chip display">$HIPPO</span>
+    </header>
+    <main>
+      <div class="hero">
+        <div>
+          <p class="chip display">unofficial meme · $HIPPO</p>
+          <p class="mark display" style="font-size:1.75rem;margin:16px 0 0"><span class="s">sticky</span> <span class="h">hippo</span></p>
+          <h1 class="display">the hippo that sticks</h1>
+          <p class="blurb">once it attaches, it doesn’t let go. unofficial solana meme. no 100x pitch. no fake utility. just a cocky blue hippo that knows it.</p>
+          <div class="row">
+            <a class="btn btn-gold display" href="#ca">watch the ca</a>
+            <a class="btn btn-line display" href="#how">how to buy</a>
+          </div>
+        </div>
+        <div class="stage">
+          <img id="fallback" src="/hippo-coin.jpg" alt="blue hippo stuck to glass, $hippo across the bottom" width="1408" height="1408" />
+          <canvas id="hippo" width="1408" height="1408" hidden></canvas>
+          <div class="panel">
+            <p class="display" style="margin:0;font-size:0.9rem">choose your colour</p>
+            <p style="margin:6px 0 0;color:var(--muted);font-size:0.9rem">pick a colour. download to your phone. take your hippo everywhere.</p>
+            <div class="swatches" id="swatches"></div>
+            <div class="row">
+              <button class="btn btn-gold display" type="button" id="save">save to phone</button>
+              <button class="btn btn-line display" type="button" id="reset">reset sky</button>
+              <span id="hex" style="font-family:ui-monospace,monospace;font-size:12px;color:var(--muted)"></span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section>
+        <h2 class="display">once it attaches</h2>
+        <p class="blurb">it doesn’t let go. suction jokes welcome. 100x promises are not. this is a meme, not a protocol.</p>
+      </section>
+      <section id="how">
+        <h2 class="display">how to buy</h2>
+        <p class="blurb">wallet you control. pump.fun — not a lookalike, not a dm. paste the ca from this page. swap a little sol. first buy is small and public.</p>
+      </section>
+      <section id="ca">
+        <h2 class="display">the only ca</h2>
+        <p class="blurb">not minted yet. when it is, it lives here. same name + different mint = fake. never from a dm.</p>
+      </section>
+      <section>
+        <h2 class="display">not the sticker shop</h2>
+        <p class="legal">stickyhippo.net is an existing sticker shop. “sticky hippo” is a registered canadian trademark (TMA1329602) for stickers/printing. this coin is unofficial. launching under this name may get a c&d. not financial advice. it can go to zero.</p>
+      </section>
+    </main>
+    <footer>unofficial $HIPPO · stickyhippo.com · verify the ca</footer>
+    <script>
+      const ORIGINAL = "#4EB6EA";
+      const SWATCHES = [
+        ["sky", "#4EB6EA"], ["navy", "#17324A"], ["mint", "#2FA88A"],
+        ["lime", "#6B9A14"], ["coral", "#D4654A"], ["sand", "#C49A4A"], ["ink", "#1C2430"],
+      ];
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+      img.src = "/hippo-coin.jpg";
+      const canvas = document.getElementById("hippo");
+      const fallback = document.getElementById("fallback");
+      const ctx = canvas.getContext("2d");
+      let base = null, hex = ORIGINAL;
+
+      function rgbToHsl(r,g,b){
+        r/=255;g/=255;b/=255;
+        const max=Math.max(r,g,b), min=Math.min(r,g,b), l=(max+min)/2;
+        if(max===min) return [0,0,l];
+        const d=max-min, s=l>0.5?d/(2-max-min):d/(max+min);
+        let h=0;
+        if(max===r) h=((g-b)/d+(g<b?6:0));
+        else if(max===g) h=(b-r)/d+2;
+        else h=(r-g)/d+4;
+        return [h*60,s,l];
+      }
+      function hue2rgb(p,q,t){ if(t<0)t+=1; if(t>1)t-=1; if(t<1/6)return p+(q-p)*6*t; if(t<1/2)return q; if(t<2/3)return p+(q-p)*(2/3-t)*6; return p; }
+      function hslToRgb(h,s,l){
+        if(s===0){ const v=Math.round(l*255); return [v,v,v]; }
+        const q=l<0.5?l*(1+s):l+s-l*s, p=2*l-q, hk=(((h%360)+360)%360)/360;
+        return [Math.round(hue2rgb(p,q,hk+1/3)*255), Math.round(hue2rgb(p,q,hk)*255), Math.round(hue2rgb(p,q,hk-1/3)*255)];
+      }
+      function paint(){
+        if(!base) return;
+        const out = new ImageData(new Uint8ClampedArray(base.data), base.width, base.height);
+        if(hex.toUpperCase() !== ORIGINAL){
+          const th = rgbToHsl(parseInt(hex.slice(1,3),16), parseInt(hex.slice(3,5),16), parseInt(hex.slice(5,7),16))[0];
+          const d = out.data;
+          for(let i=0;i<d.length;i+=4){
+            const r=d[i], g=d[i+1], b=d[i+2];
+            const [h,s,l]=rgbToHsl(r,g,b);
+            if(l>0.9 && s<0.22) continue;
+            if(l<0.16) continue;
+            if(s<0.14 && l>0.62) continue;
+            const bluish=(h>168&&h<232&&s>0.16&&l<0.9)||(b>r+12&&b>=g-8&&s>0.18);
+            if(!bluish) continue;
+            const [nr,ng,nb]=hslToRgb(th,s,l);
+            d[i]=nr; d[i+1]=ng; d[i+2]=nb;
+          }
+        }
+        ctx.putImageData(out,0,0);
+      }
+      img.decode().then(()=>{
+        canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
+        ctx.drawImage(img,0,0);
+        base = ctx.getImageData(0,0,canvas.width,canvas.height);
+        fallback.hidden = true; canvas.hidden = false;
+        paint();
+      });
+      const box = document.getElementById("swatches");
+      SWATCHES.forEach(([label, color])=>{
+        const b = document.createElement("button");
+        b.className = "swatch"; b.type="button"; b.style.background=color; b.ariaLabel=label;
+        b.onclick = ()=>{ hex=color; document.getElementById("hex").textContent=hex; paint(); [...box.querySelectorAll(".swatch")].forEach(x=>x.setAttribute("aria-pressed","false")); b.setAttribute("aria-pressed","true"); };
+        box.appendChild(b);
+      });
+      const custom = document.createElement("input");
+      custom.type="color"; custom.value=ORIGINAL; custom.ariaLabel="custom hippo colour";
+      custom.oninput = (e)=>{ hex=e.target.value.toUpperCase(); document.getElementById("hex").textContent=hex; paint(); };
+      box.appendChild(custom);
+      document.getElementById("reset").onclick = ()=>{ hex=ORIGINAL; document.getElementById("hex").textContent=hex; paint(); };
+      document.getElementById("save").onclick = ()=>{
+        canvas.toBlob((blob)=>{ const a=document.createElement("a"); a.href=URL.createObjectURL(blob); a.download="hippo-"+hex.replace("#","")+".jpg"; a.click(); URL.revokeObjectURL(a.href); }, "image/jpeg", 0.92);
+      };
+      document.getElementById("hex").textContent = hex;
+    </script>
+  </body>
+</html>
