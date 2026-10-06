@@ -65,7 +65,7 @@ export const COINS: Record<CoinId, Coin> = {
       "it doesn’t let go. suction jokes welcome. 100x promises are not. this is a meme, not a protocol.",
     close: "if it isn’t this mint, it isn’t this hippo.",
     action: "unstick",
-    mint: "",
+    mint: "9v7HTUYNia5DFcJk8wCpjqk9gUifkpo5FGnTawjzpump",
     xUrl: "",
     telegramUrl: "",
     tickerBits: [
