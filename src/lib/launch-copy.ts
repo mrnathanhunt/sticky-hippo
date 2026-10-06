@@ -78,9 +78,9 @@ export function xThread(coin: Coin, ctx: CopyCtx) {
 
 $${coin.ticker}
 unofficial solana meme.`,
-    `2/ stickyhippo.net is a sticker shop. “sticky hippo” is a canadian trademark (TMA1329602) for stickers/printing.
+    `2/ stickyhippo.net is a sticker shop.
 
-this coin is not that shop. unofficial. a c&d is possible. we say that up front.`,
+this coin is not that shop. unofficial. not affiliated.`,
     `3/ this is a meme. not a product. not a protocol. no fake utility. no 100x promises.`,
     `4/ how to not get mugged
 • wallet you control
@@ -107,7 +107,7 @@ don’t buy more than you’re willing to lose.`,
 }
 
 export function xShopReply() {
-  return `nah. stickyhippo.net is a sticker shop. this is an unofficial solana meme. not affiliated. trademark TMA1329602 is theirs for stickers/printing.`;
+  return `nah. stickyhippo.net is a sticker shop. this is an unofficial solana meme. not affiliated.`;
 }
 
 export function xCloneReply(ctx: CopyCtx) {
@@ -141,7 +141,7 @@ export function tgRules(_coin: Coin) {
 
 1. the pinned ca is the only ca. same name + different mint = fake.
 2. no dms with “alpha”, fake pump links, or impersonation.
-3. no pretending this is the sticker shop or the canadian trademark owner.
+3. no pretending this is the sticker shop.
 4. no 100x promises. it’s a meme. it can go to zero.
 5. no volume-bot / bundler / fake-holder talk.
 6. mods will remove you for scams.
@@ -173,7 +173,7 @@ export function checklistFor(coin: Coin): CheckItem[] {
       id: "legal-read",
       group: "legal",
       label:
-        "read the name note. sticky hippo is a canadian trademark (TMA1329602). stickyhippo.net is a sticker shop. c&d risk is real.",
+        "read the name note. stickyhippo.net is a sticker shop. this coin is not that shop.",
     },
     {
       id: "legal-unofficial",
@@ -188,7 +188,7 @@ export function checklistFor(coin: Coin): CheckItem[] {
     {
       id: "legal-no-harass",
       group: "legal",
-      label: "do not harass the shop. lawyer/dmca only if the exact image was copied.",
+      label: "do not harass the shop.",
     },
   ];
 

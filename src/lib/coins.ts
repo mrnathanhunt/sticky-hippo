@@ -53,7 +53,7 @@ export const COINS: Record<CoinId, Coin> = {
     blurb:
       "once it attaches, it doesn’t let go. unofficial solana meme. no 100x pitch. no fake utility. just a cocky blue hippo that knows it.",
     disclaimer:
-      "$HIPPO is an unofficial solana meme. not a product, not the sticker shop, not financial advice. it can go to zero. “sticky hippo” is a registered canadian trademark (TMA1329602) for stickers/printing. stickyhippo.net is an existing shop. launching a coin under this name may get a c&d.",
+      "$HIPPO is an unofficial solana meme. not a product, not the sticker shop, not financial advice. it can go to zero. not affiliated with stickyhippo.net.",
     tone: "cream",
     kit: "/hippo-coin.jpg",
     kitAlt: "bright blue hippo stuck to glass, $hippo across the bottom",
@@ -98,10 +98,6 @@ export const COINS: Record<CoinId, Coin> = {
         a: "no. stickyhippo.net / etsy stickyhippoCA is a real sticker shop. this is an unofficial solana meme. not affiliated.",
       },
       {
-        q: "is the name taken?",
-        a: "yes as a canadian trademark (TMA1329602) for stickers/printing. launching a coin under this name may get a cease and desist. we say that here so nobody is surprised.",
-      },
-      {
         q: "is there utility?",
         a: "no. if someone pitches a game, staking, or a merch empire as “the utility,” they’re making it up.",
       },
@@ -116,10 +112,9 @@ export const COINS: Record<CoinId, Coin> = {
     ],
     legal: [
       "stickyhippo.net is an existing sticker shop (etsy stickyhippoCA).",
-      "“sticky hippo” is a registered canadian trademark (TMA1329602) for stickers/printing.",
-      "launching a coin under this name may get a cease and desist. this coin is unofficial and is not that shop.",
+      "this coin is unofficial and is not that shop.",
       "do not claim they stole the logo without side-by-side proof. the hippo file here is original generated art (not their product photos).",
-      "do not harass the shop. a lawyer / dmca is the path only if the exact image was copied.",
+      "do not harass the shop.",
       "this desk will not help with volume bots, bundlers, fake holders, rugs, or impersonation.",
     ],
     pumpDescription:
