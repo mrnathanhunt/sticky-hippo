@@ -2,15 +2,9 @@ import { createContext, useContext, type ReactNode } from "react";
 import { COINS, type Coin, type CoinId } from "@/lib/coins";
 import { cn } from "@/lib/utils";
 
-const CoinContext = createContext<Coin>(COINS.alig);
+const CoinContext = createContext<Coin>(COINS.hippo);
 
-export function CoinProvider({
-  id,
-  children,
-}: {
-  id: CoinId;
-  children: ReactNode;
-}) {
+export function CoinProvider({ id, children }: { id: CoinId; children: ReactNode }) {
   const coin = COINS[id];
   return (
     <CoinContext.Provider value={coin}>

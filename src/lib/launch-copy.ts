@@ -42,8 +42,7 @@ export function pumpFields(coin: Coin, ctx: CopyCtx) {
 
 export function xBio(coin: Coin, ctx: CopyCtx) {
   const tg = tgHandle(ctx);
-  const extra =
-    coin.id === "hippo" ? " not the sticker shop." : " not the film.";
+  const extra = " not the sticker shop.";
   return `${coin.tagline} unofficial $${coin.ticker} meme.${extra}${tg ? ` ${tg}.` : ""} verify ca · same name + different mint = fake`;
 }
 
@@ -57,7 +56,7 @@ ${ctx.mint ? `solscan: ${scan(ctx)}` : ""}
 ${ctx.telegramUrl ? `tg: ${ctx.telegramUrl}` : ""}
 
 ${VERIFY}
-${coin.id === "hippo" ? "not the sticker shop. not affiliated." : "not the movie. not affiliated."}`.replace(/\n{3,}/g, "\n\n");
+not the sticker shop. not affiliated.`.replace(/\n{3,}/g, "\n\n");
 }
 
 export function xLaunchPost(coin: Coin, ctx: CopyCtx) {
@@ -74,47 +73,14 @@ unofficial meme. not affiliated.`;
 }
 
 export function xThread(coin: Coin, ctx: CopyCtx) {
-  if (coin.id === "hippo") {
-    return [
-      `1/ ${coin.tagline}
-
-$${coin.ticker}
-unofficial solana meme.`,
-      `2/ stickyhippo.net is a sticker shop. “sticky hippo” is a canadian trademark (TMA1329602) for stickers/printing.
-
-this coin is not that shop. unofficial. a c&d is possible. we say that up front.`,
-      `3/ this is a meme. not a product. not a protocol. no fake utility. no 100x promises.`,
-      `4/ how to not get mugged
-• wallet you control
-• pump.fun — not a lookalike, not a dm
-• paste the ca from this site
-• swap a little sol
-
-first buy is small and public.`,
-      `5/ the only real ca
-
-${ca(ctx)}
-
-pump: ${pump(ctx)}
-site: stickyhippo.com
-
-${VERIFY}`,
-      `6/ clones will use the name. they won’t use this mint.
-
-if a stranger sends a different ca, leave.`,
-      `7/ not financial advice. meme coins can go to zero.
-
-don’t buy more than you’re willing to lose.`,
-    ];
-  }
   return [
     `1/ ${coin.tagline}
 
 $${coin.ticker}
 unofficial solana meme.`,
-    `2/ there is a film. Ali G: Who Iz I? 23 oct 2026. amazon mgm.
+    `2/ stickyhippo.net is a sticker shop. “sticky hippo” is a canadian trademark (TMA1329602) for stickers/printing.
 
-this coin is not that film. we don’t speak for him. we don’t speak for the studio.`,
+this coin is not that shop. unofficial. a c&d is possible. we say that up front.`,
     `3/ this is a meme. not a product. not a protocol. no fake utility. no 100x promises.`,
     `4/ how to not get mugged
 • wallet you control
@@ -128,6 +94,7 @@ first buy is small and public.`,
 ${ca(ctx)}
 
 pump: ${pump(ctx)}
+site: stickyhippo.com
 
 ${VERIFY}`,
     `6/ clones will use the name. they won’t use this mint.
@@ -137,10 +104,6 @@ if a stranger sends a different ca, leave.`,
 
 don’t buy more than you’re willing to lose.`,
   ];
-}
-
-export function xMovieReply() {
-  return `nah. Ali G: Who Iz I? is the film (23 oct 2026). this is an unofficial meme coin. not affiliated. we don’t have the poster, the trailer, or his blessing.`;
 }
 
 export function xShopReply() {
@@ -156,14 +119,14 @@ same name + different mint = fake.`;
 }
 
 export function tgDescription(coin: Coin, ctx: CopyCtx) {
-  const note = coin.id === "hippo" ? "not the sticker shop." : "not the film.";
+  const note = "not the sticker shop.";
   return `${coin.tagline} $${coin.ticker} unofficial meme. ${note} ca pinned.${ctx.mint ? ` · ${shortMint(ctx.mint)}` : ""}`;
 }
 
 export function tgWelcome(coin: Coin, ctx: CopyCtx) {
   return `you made it.
 
-this is $${coin.ticker} — unofficial. ${coin.id === "hippo" ? "not the sticker shop." : "not the movie."}
+this is $${coin.ticker} — unofficial. not the sticker shop.
 
 the only ca is pinned. if someone dms you a different one, they’re a clone.
 
@@ -173,9 +136,8 @@ ${ctx.xUrl ? `x: ${ctx.xUrl}` : ""}
 rules are pinned. keep it a joke, not a mug.`.replace(/\n{3,}/g, "\n\n");
 }
 
-export function tgRules(coin: Coin) {
-  if (coin.id === "hippo") {
-    return `house rules.
+export function tgRules(_coin: Coin) {
+  return `house rules.
 
 1. the pinned ca is the only ca. same name + different mint = fake.
 2. no dms with “alpha”, fake pump links, or impersonation.
@@ -185,18 +147,6 @@ export function tgRules(coin: Coin) {
 6. mods will remove you for scams.
 7. not financial advice.
 8. don’t harass stickyhippo.net.`;
-  }
-  return `house rules.
-
-1. the pinned ca is the only ca. same name + different mint = fake.
-2. no dms with “alpha”, fake pump links, or impersonation.
-3. no pretending this is the film, the studio, or sacha baron cohen.
-4. no official posters, stills, or trailers. ${coin.id === "alig" ? "costume jokes only." : "boombox jokes only."}
-5. no 100x promises. it’s a meme. it can go to zero.
-6. no volume-bot / bundler / fake-holder talk.
-7. mods will remove you for scams.
-8. not financial advice.
-9. $ALIG and $BOOYA are sister coins with different mints. don’t mix them.`;
 }
 
 export function tgCaPin(coin: Coin, ctx: CopyCtx) {
@@ -208,7 +158,7 @@ pump: ${pump(ctx)}
 solscan: ${ctx.mint ? scan(ctx) : "(after mint)"}
 
 verify this mint. same name + different mint = fake.
-${coin.id === "hippo" ? "not the sticker shop." : "not the film."}`;
+not the sticker shop.`;
 }
 
 export type CheckItem = {
@@ -218,54 +168,29 @@ export type CheckItem = {
 };
 
 export function checklistFor(coin: Coin): CheckItem[] {
-  const legal: CheckItem[] =
-    coin.id === "hippo"
-      ? [
-          {
-            id: "legal-read",
-            group: "legal",
-            label:
-              "read the name note. sticky hippo is a canadian trademark (TMA1329602). stickyhippo.net is a sticker shop. c&d risk is real.",
-          },
-          {
-            id: "legal-unofficial",
-            group: "legal",
-            label: "every bio, pin, and the site say unofficial / not the sticker shop.",
-          },
-          {
-            id: "legal-no-claim",
-            group: "legal",
-            label: "do not claim the shop stole the logo without side-by-side proof.",
-          },
-          {
-            id: "legal-no-harass",
-            group: "legal",
-            label: "do not harass the shop. lawyer/dmca only if the exact image was copied.",
-          },
-        ]
-      : [
-          {
-            id: "legal-read",
-            group: "legal",
-            label:
-              "read the name/likeness note. a theatrical ali g film is 23 oct 2026. c&d risk is high.",
-          },
-          {
-            id: "legal-unofficial",
-            group: "legal",
-            label: "every bio, pin, and the site say unofficial / not the film / not affiliated.",
-          },
-          {
-            id: "legal-no-face",
-            group: "legal",
-            label: "no photos of sacha baron cohen. no official posters, stills, or trailers.",
-          },
-          {
-            id: "legal-no-impersonate",
-            group: "legal",
-            label: "do not impersonate official film or baron cohen accounts.",
-          },
-        ];
+  const legal: CheckItem[] = [
+    {
+      id: "legal-read",
+      group: "legal",
+      label:
+        "read the name note. sticky hippo is a canadian trademark (TMA1329602). stickyhippo.net is a sticker shop. c&d risk is real.",
+    },
+    {
+      id: "legal-unofficial",
+      group: "legal",
+      label: "every bio, pin, and the site say unofficial / not the sticker shop.",
+    },
+    {
+      id: "legal-no-claim",
+      group: "legal",
+      label: "do not claim the shop stole the logo without side-by-side proof.",
+    },
+    {
+      id: "legal-no-harass",
+      group: "legal",
+      label: "do not harass the shop. lawyer/dmca only if the exact image was copied.",
+    },
+  ];
 
   return [
     ...legal,
