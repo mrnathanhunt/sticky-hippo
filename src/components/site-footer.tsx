@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Wordmark } from "@/components/wordmark";
 import { useCoin } from "@/lib/coin";
-import { COINS } from "@/lib/coins";
 import { useLiveToken } from "@/lib/token-store";
 import { cn } from "@/lib/utils";
 
@@ -10,9 +9,6 @@ export function SiteFooter() {
   const live = useLiveToken();
   const loud = coin.tone === "loud";
   const cream = coin.tone === "cream";
-  const sister =
-    coin.id === "alig" ? COINS.booya : coin.id === "booya" ? COINS.alig : null;
-
   return (
     <footer className={cn("border-t", loud || cream ? "border-ink/10" : "border-paper/10")}>
       <div className="mx-auto flex max-w-6xl flex-col gap-6 px-4 py-10 sm:px-6">
@@ -28,12 +24,7 @@ export function SiteFooter() {
             </a>
           ) : null}
           {live.telegramUrl ? (
-            <a
-              href={live.telegramUrl}
-              target="_blank"
-              rel="noreferrer"
-              className="hover:text-gold"
-            >
+            <a href={live.telegramUrl} target="_blank" rel="noreferrer" className="hover:text-gold">
               telegram
             </a>
           ) : null}
@@ -45,16 +36,6 @@ export function SiteFooter() {
           <Link to={coin.deskPath} className="hover:text-gold">
             launch desk
           </Link>
-          {sister ? (
-            <Link to={sister.path} className="hover:text-gold">
-              ${sister.ticker}
-            </Link>
-          ) : null}
-          {coin.id !== "hippo" ? (
-            <Link to="/whoizi" className="hover:text-gold">
-              both coins
-            </Link>
-          ) : null}
         </div>
       </div>
     </footer>

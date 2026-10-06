@@ -100,10 +100,7 @@ async function fetchOk(url: string) {
 }
 
 async function solanaRpc(method: string, params: unknown[]) {
-  const endpoints = [
-    "https://solana-rpc.publicnode.com",
-    "https://api.mainnet-beta.solana.com",
-  ];
+  const endpoints = ["https://solana-rpc.publicnode.com", "https://api.mainnet-beta.solana.com"];
   let lastError: unknown;
   for (const url of endpoints) {
     try {
@@ -133,11 +130,7 @@ function sameAddr(a?: string, b?: string) {
   return Boolean(a && b && a.toLowerCase() === b.toLowerCase());
 }
 
-function buildWarnings(
-  report: MintReport,
-  pump: PumpCoin | null,
-  coinId: CoinId,
-): Warning[] {
+function buildWarnings(report: MintReport, pump: PumpCoin | null, coinId: CoinId): Warning[] {
   const warnings: Warning[] = [];
   const name = (report.name ?? "").trim();
   const symbol = (report.symbol ?? "").trim();
@@ -225,7 +218,7 @@ function buildWarnings(
   if (report.clones.length) {
     warnings.push({
       level: "warn",
-      text: `${report.clones.length} other solana token${report.clones.length === 1 ? "" : "s"} using a similar name. clones will spike around the film. this mint is the source of truth.`,
+      text: `${report.clones.length} other solana token${report.clones.length === 1 ? "" : "s"} using a similar name. this mint is the source of truth.`,
     });
   }
 
@@ -270,9 +263,7 @@ async function runAnalysis(mint: string, coinId: CoinId): Promise<MintReport> {
     report.marketCapUsd = num(pump.usd_market_cap);
     if (pump.created_timestamp) {
       const ms =
-        pump.created_timestamp > 1e12
-          ? pump.created_timestamp
-          : pump.created_timestamp * 1000;
+        pump.created_timestamp > 1e12 ? pump.created_timestamp : pump.created_timestamp * 1000;
       report.createdAt = new Date(ms).toISOString();
     }
   }
@@ -322,17 +313,14 @@ async function runAnalysis(mint: string, coinId: CoinId): Promise<MintReport> {
     report.freezeAuthority = parsed.freezeAuthority ?? null;
   }
 
-  const largestValue = largest?.value as
-    | { address: string; uiAmount: number | null }[]
-    | undefined;
+  const largestValue = largest?.value as { address: string; uiAmount: number | null }[] | undefined;
   if (Array.isArray(largestValue)) {
     const poolAddrs = [pump?.bonding_curve, pump?.associated_bonding_curve, best?.pairAddress]
       .filter(Boolean)
       .map((s) => String(s));
     report.holders = largestValue.slice(0, 8).map((row) => {
       const amount = row.uiAmount ?? 0;
-      const pct =
-        report.supply && report.supply > 0 ? (amount / report.supply) * 100 : null;
+      const pct = report.supply && report.supply > 0 ? (amount / report.supply) * 100 : null;
       const tag: HolderRow["tag"] = poolAddrs.some((p) => sameAddr(p, row.address))
         ? report.complete
           ? "lp"
@@ -365,11 +353,7 @@ async function runAnalysis(mint: string, coinId: CoinId): Promise<MintReport> {
     if (report.clones.length >= 6) break;
   }
 
-  report.warnings = buildWarnings(
-    report,
-    pump && typeof pump === "object" ? pump : null,
-    coinId,
-  );
+  report.warnings = buildWarnings(report, pump && typeof pump === "object" ? pump : null, coinId);
   return report;
 }
 
@@ -382,7 +366,7 @@ export const analyzeMint = createServerFn({ method: "POST" })
     const coinIdRaw =
       typeof input === "object" && input && "coinId" in input
         ? String((input as { coinId: unknown }).coinId)
-        : "alig";
+        : "hippo";
     if (!isSolanaMint(mint)) {
       throw new Error("that doesn’t look like a solana mint.");
     }

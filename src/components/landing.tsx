@@ -78,24 +78,12 @@ function Hero() {
         >
           unofficial meme · ${coin.ticker}
         </p>
-        {coin.id === "booya" ? (
-          <h1 className="font-display text-5xl uppercase leading-[0.9] tracking-tight sm:text-7xl">
+        <div>
+          <Wordmark size="lg" className="block" />
+          <h1 className="mt-3 font-display text-4xl uppercase leading-[0.9] tracking-tight text-ink sm:text-6xl">
             {coin.headline}
           </h1>
-        ) : (
-          <div>
-            <Wordmark size="lg" className="block" />
-            <h1
-              className={
-                coin.id === "alig"
-                  ? "mt-3 font-display text-4xl uppercase leading-[0.9] tracking-tight text-paper sm:text-6xl"
-                  : "mt-3 font-display text-4xl uppercase leading-[0.9] tracking-tight text-ink sm:text-6xl"
-              }
-            >
-              {coin.headline}
-            </h1>
-          </div>
-        )}
+        </div>
         <p className="mt-5 max-w-md text-lg leading-relaxed text-muted">{coin.blurb}</p>
         <div className="mt-8 flex flex-wrap items-center gap-3">
           {on ? (
@@ -128,29 +116,7 @@ function Hero() {
           <ActionTap />
         </div>
       </div>
-      {coin.id === "hippo" ? (
-        <HippoTint src={coin.heroStill ?? coin.kit} alt={coin.kitAlt} />
-      ) : coin.heroVideo ? (
-        <video
-          className="mx-auto w-full max-w-md rounded-xl outline outline-1 -outline-offset-1 outline-current/15"
-          poster={coin.heroPoster ?? coin.kit}
-          src={coin.heroVideo}
-          autoPlay
-          muted
-          loop
-          playsInline
-          preload="metadata"
-          aria-label={coin.kitAlt}
-        />
-      ) : (
-        <img
-          src={coin.heroStill ?? coin.kit}
-          alt={coin.kitAlt}
-          width={1408}
-          height={1408}
-          className="mx-auto w-full max-w-xl rounded-xl outline outline-1 -outline-offset-1 outline-current/15"
-        />
-      )}
+      <HippoTint src={coin.heroStill ?? coin.kit} alt={coin.kitAlt} />
     </section>
   );
 }
@@ -176,10 +142,7 @@ function Lore() {
             {coin.pillars.map((item, i) => {
               const Icon = ICONS[i] ?? ShieldCheck;
               return (
-                <li
-                  key={item.title}
-                  className="rounded-xl bg-current/5 p-4 sm:p-5"
-                >
+                <li key={item.title} className="rounded-xl bg-current/5 p-4 sm:p-5">
                   <p className="flex items-center gap-2 font-display text-sm uppercase text-red">
                     <Icon className="size-4" />
                     {item.title}
@@ -206,9 +169,7 @@ function HowToBuy() {
   return (
     <section id="how" className={cream ? "bg-surface text-ink" : "bg-paper text-ink"}>
       <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-        <h2 className="font-display text-4xl uppercase tracking-tight sm:text-5xl">
-          how to buy
-        </h2>
+        <h2 className="font-display text-4xl uppercase tracking-tight sm:text-5xl">how to buy</h2>
         <p className="mt-3 max-w-lg text-lg text-muted">
           four steps. if a stranger skips the ca on this page, leave.
         </p>
@@ -232,9 +193,7 @@ function Faq() {
   const coin = useCoin();
   return (
     <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20">
-      <h2 className="font-display text-4xl uppercase tracking-tight sm:text-5xl">
-        questions
-      </h2>
+      <h2 className="font-display text-4xl uppercase tracking-tight sm:text-5xl">questions</h2>
       <div className="mt-8 divide-y divide-current/10 rounded-xl bg-current/5">
         {coin.faq.map((item) => (
           <details key={item.q} className="group px-5 py-2 sm:px-6">

@@ -24,7 +24,7 @@ const empty: Slot = { mint: "", xUrl: "", telegramUrl: "", taps: 0 };
 export const useTokenStore = create<TokenState>()(
   persist(
     (set) => ({
-      coins: { alig: { ...empty }, booya: { ...empty }, hippo: { ...empty } },
+      coins: { hippo: { ...empty } },
       setMint: (id, mint) =>
         set((s) => ({
           coins: { ...s.coins, [id]: { ...s.coins[id], mint: mint.trim() } },
@@ -63,8 +63,7 @@ export function useLiveToken() {
 
   const mint = coin.mint.length > 32 ? coin.mint : hydrated ? slot.mint : coin.mint;
   const xUrl = coin.xUrl || (hydrated ? slot.xUrl : coin.xUrl);
-  const telegramUrl =
-    coin.telegramUrl || (hydrated ? slot.telegramUrl : coin.telegramUrl);
+  const telegramUrl = coin.telegramUrl || (hydrated ? slot.telegramUrl : coin.telegramUrl);
 
   return {
     ...coin,

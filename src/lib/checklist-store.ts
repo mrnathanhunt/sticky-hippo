@@ -12,7 +12,7 @@ type CheckState = {
 export const useChecklistStore = create<CheckState>()(
   persist(
     (set, get) => ({
-      byCoin: { alig: {}, booya: {}, hippo: {} },
+      byCoin: { hippo: {} },
       toggle: (id, item) => {
         const current = get().byCoin[id] ?? {};
         set({

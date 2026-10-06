@@ -10,29 +10,12 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as AligRouteImport } from './routes/alig'
-import { Route as BooyaRouteImport } from './routes/booya'
 import { Route as DeskRouteImport } from './routes/desk'
 import { Route as PicksRouteImport } from './routes/picks'
-import { Route as WhoiziRouteImport } from './routes/whoizi'
-import { Route as AligIndexRouteImport } from './routes/alig/index'
-import { Route as AligDeskRouteImport } from './routes/alig/desk'
-import { Route as BooyaIndexRouteImport } from './routes/booya/index'
-import { Route as BooyaDeskRouteImport } from './routes/booya/desk'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AligRoute = AligRouteImport.update({
-  id: '/alig',
-  path: '/alig',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const BooyaRoute = BooyaRouteImport.update({
-  id: '/booya',
-  path: '/booya',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DeskRoute = DeskRouteImport.update({
@@ -45,111 +28,35 @@ const PicksRoute = PicksRouteImport.update({
   path: '/picks',
   getParentRoute: () => rootRouteImport,
 } as any)
-const WhoiziRoute = WhoiziRouteImport.update({
-  id: '/whoizi',
-  path: '/whoizi',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AligIndexRoute = AligIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AligRoute,
-} as any)
-const AligDeskRoute = AligDeskRouteImport.update({
-  id: '/desk',
-  path: '/desk',
-  getParentRoute: () => AligRoute,
-} as any)
-const BooyaIndexRoute = BooyaIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => BooyaRoute,
-} as any)
-const BooyaDeskRoute = BooyaDeskRouteImport.update({
-  id: '/desk',
-  path: '/desk',
-  getParentRoute: () => BooyaRoute,
-} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
-  '/alig': typeof AligRouteWithChildren
-  '/booya': typeof BooyaRouteWithChildren
   '/desk': typeof DeskRoute
   '/picks': typeof PicksRoute
-  '/whoizi': typeof WhoiziRoute
-  '/alig/desk': typeof AligDeskRoute
-  '/booya/desk': typeof BooyaDeskRoute
-  '/alig/': typeof AligIndexRoute
-  '/booya/': typeof BooyaIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/desk': typeof DeskRoute
   '/picks': typeof PicksRoute
-  '/whoizi': typeof WhoiziRoute
-  '/alig/desk': typeof AligDeskRoute
-  '/booya/desk': typeof BooyaDeskRoute
-  '/alig': typeof AligIndexRoute
-  '/booya': typeof BooyaIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
-  '/alig': typeof AligRouteWithChildren
-  '/booya': typeof BooyaRouteWithChildren
   '/desk': typeof DeskRoute
   '/picks': typeof PicksRoute
-  '/whoizi': typeof WhoiziRoute
-  '/alig/desk': typeof AligDeskRoute
-  '/booya/desk': typeof BooyaDeskRoute
-  '/alig/': typeof AligIndexRoute
-  '/booya/': typeof BooyaIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths:
-    | '/'
-    | '/alig'
-    | '/booya'
-    | '/desk'
-    | '/picks'
-    | '/whoizi'
-    | '/alig/desk'
-    | '/booya/desk'
-    | '/alig/'
-    | '/booya/'
+  fullPaths: '/' | '/desk' | '/picks'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/desk'
-    | '/picks'
-    | '/whoizi'
-    | '/alig/desk'
-    | '/booya/desk'
-    | '/alig'
-    | '/booya'
-  id:
-    | '__root__'
-    | '/'
-    | '/alig'
-    | '/booya'
-    | '/desk'
-    | '/picks'
-    | '/whoizi'
-    | '/alig/desk'
-    | '/booya/desk'
-    | '/alig/'
-    | '/booya/'
+  to: '/' | '/desk' | '/picks'
+  id: '__root__' | '/' | '/desk' | '/picks'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
-  AligRoute: typeof AligRouteWithChildren
-  BooyaRoute: typeof BooyaRouteWithChildren
   DeskRoute: typeof DeskRoute
   PicksRoute: typeof PicksRoute
-  WhoiziRoute: typeof WhoiziRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -159,20 +66,6 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/alig': {
-      id: '/alig'
-      path: '/alig'
-      fullPath: '/alig'
-      preLoaderRoute: typeof AligRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/booya': {
-      id: '/booya'
-      path: '/booya'
-      fullPath: '/booya'
-      preLoaderRoute: typeof BooyaRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/desk': {
@@ -189,75 +82,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PicksRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/whoizi': {
-      id: '/whoizi'
-      path: '/whoizi'
-      fullPath: '/whoizi'
-      preLoaderRoute: typeof WhoiziRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/alig/': {
-      id: '/alig/'
-      path: '/'
-      fullPath: '/alig/'
-      preLoaderRoute: typeof AligIndexRouteImport
-      parentRoute: typeof AligRoute
-    }
-    '/alig/desk': {
-      id: '/alig/desk'
-      path: '/desk'
-      fullPath: '/alig/desk'
-      preLoaderRoute: typeof AligDeskRouteImport
-      parentRoute: typeof AligRoute
-    }
-    '/booya/': {
-      id: '/booya/'
-      path: '/'
-      fullPath: '/booya/'
-      preLoaderRoute: typeof BooyaIndexRouteImport
-      parentRoute: typeof BooyaRoute
-    }
-    '/booya/desk': {
-      id: '/booya/desk'
-      path: '/desk'
-      fullPath: '/booya/desk'
-      preLoaderRoute: typeof BooyaDeskRouteImport
-      parentRoute: typeof BooyaRoute
-    }
   }
 }
 
-interface AligRouteChildren {
-  AligDeskRoute: typeof AligDeskRoute
-  AligIndexRoute: typeof AligIndexRoute
-}
-
-const AligRouteChildren: AligRouteChildren = {
-  AligDeskRoute: AligDeskRoute,
-  AligIndexRoute: AligIndexRoute,
-}
-
-const AligRouteWithChildren = AligRoute._addFileChildren(AligRouteChildren)
-
-interface BooyaRouteChildren {
-  BooyaDeskRoute: typeof BooyaDeskRoute
-  BooyaIndexRoute: typeof BooyaIndexRoute
-}
-
-const BooyaRouteChildren: BooyaRouteChildren = {
-  BooyaDeskRoute: BooyaDeskRoute,
-  BooyaIndexRoute: BooyaIndexRoute,
-}
-
-const BooyaRouteWithChildren = BooyaRoute._addFileChildren(BooyaRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
-  AligRoute: AligRouteWithChildren,
-  BooyaRoute: BooyaRouteWithChildren,
   DeskRoute: DeskRoute,
   PicksRoute: PicksRoute,
-  WhoiziRoute: WhoiziRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
