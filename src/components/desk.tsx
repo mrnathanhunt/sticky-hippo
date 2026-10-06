@@ -21,7 +21,6 @@ import {
   xBio,
   xCloneReply,
   xLaunchPost,
-  xMovieReply,
   xShopReply,
   xPin,
   xThread,
@@ -176,8 +175,8 @@ function CaDesk() {
           paste a mint. we check it.
         </p>
         <p className="mt-2 max-w-prose text-muted">
-          after pump.fun mints, paste the ca here. this desk rewrites every block
-          below. verify the ca. same name + different mint = fake.
+          after pump.fun mints, paste the ca here. this desk rewrites every block below. verify the
+          ca. same name + different mint = fake.
         </p>
         <label className="mt-5 block text-xs font-semibold uppercase tracking-widest text-muted">
           contract
@@ -285,14 +284,24 @@ function CaDesk() {
               className="text-ink shadow-[0_0_0_1px_color-mix(in_oklab,var(--color-ink)_16%,transparent)] hover:bg-paper-deep"
             />
             {report.mint ? (
-              <Button variant="outline" size="sm" asChild className="text-ink shadow-[0_0_0_1px_color-mix(in_oklab,var(--color-ink)_16%,transparent)] hover:bg-paper-deep">
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
+                className="text-ink shadow-[0_0_0_1px_color-mix(in_oklab,var(--color-ink)_16%,transparent)] hover:bg-paper-deep"
+              >
                 <a href={pumpUrl(report.mint)} target="_blank" rel="noreferrer">
                   pump.fun
                 </a>
               </Button>
             ) : null}
             {solscanUrl(report.mint) ? (
-              <Button variant="outline" size="sm" asChild className="text-ink shadow-[0_0_0_1px_color-mix(in_oklab,var(--color-ink)_16%,transparent)] hover:bg-paper-deep">
+              <Button
+                variant="outline"
+                size="sm"
+                asChild
+                className="text-ink shadow-[0_0_0_1px_color-mix(in_oklab,var(--color-ink)_16%,transparent)] hover:bg-paper-deep"
+              >
                 <a href={solscanUrl(report.mint)} target="_blank" rel="noreferrer">
                   solscan
                 </a>
@@ -326,8 +335,7 @@ function CaDesk() {
                     className="flex flex-wrap items-baseline justify-between gap-2 py-2 font-mono text-xs"
                   >
                     <span className="break-all">
-                      {shortMint(h.address)}{" "}
-                      <span className="font-sans text-muted">{h.tag}</span>
+                      {shortMint(h.address)} <span className="font-sans text-muted">{h.tag}</span>
                     </span>
                     <span className="text-muted">
                       {compact(h.amount)}
@@ -362,31 +370,33 @@ function ChecklistDesk() {
         <div key={group.id} className="rounded-xl bg-surface p-4 text-ink shadow-card sm:p-5">
           <p className="font-display text-sm uppercase">{group.title}</p>
           <ul className="mt-3 grid gap-2">
-            {items.filter((i) => i.group === group.id).map((item) => {
-              const on = Boolean(done[item.id]);
-              return (
-                <li key={item.id}>
-                  <button
-                    type="button"
-                    onClick={() => toggle(item.id)}
-                    className="flex w-full items-start gap-3 rounded-lg p-2 text-left hover:bg-paper"
-                  >
-                    <span
-                      className={cn(
-                        "mt-0.5 grid size-5 shrink-0 place-items-center rounded-sm",
-                        on ? "bg-gold text-ink" : "bg-paper text-transparent",
-                      )}
-                      aria-hidden
+            {items
+              .filter((i) => i.group === group.id)
+              .map((item) => {
+                const on = Boolean(done[item.id]);
+                return (
+                  <li key={item.id}>
+                    <button
+                      type="button"
+                      onClick={() => toggle(item.id)}
+                      className="flex w-full items-start gap-3 rounded-lg p-2 text-left hover:bg-paper"
                     >
-                      <Check className="size-3.5" />
-                    </span>
-                    <span className={cn("text-sm sm:text-base", on && "text-muted")}>
-                      {item.label}
-                    </span>
-                  </button>
-                </li>
-              );
-            })}
+                      <span
+                        className={cn(
+                          "mt-0.5 grid size-5 shrink-0 place-items-center rounded-sm",
+                          on ? "bg-gold text-ink" : "bg-paper text-transparent",
+                        )}
+                        aria-hidden
+                      >
+                        <Check className="size-3.5" />
+                      </span>
+                      <span className={cn("text-sm sm:text-base", on && "text-muted")}>
+                        {item.label}
+                      </span>
+                    </button>
+                  </li>
+                );
+              })}
           </ul>
         </div>
       ))}
@@ -450,9 +460,8 @@ export function Desk() {
             launch desk
           </h1>
           <p className="mt-4 max-w-xl text-lg text-muted">
-            copy-paste for pump.fun, x, and telegram. paste the mint after it
-            lives — every block rewrites. this desk does not log into anything
-            or touch a wallet.
+            copy-paste for pump.fun, x, and telegram. paste the mint after it lives — every block
+            rewrites. this desk does not log into anything or touch a wallet.
           </p>
         </header>
 
@@ -462,7 +471,11 @@ export function Desk() {
         <Section id="checklist" title="checklist" lede="legal first. then assets. then mint.">
           <ChecklistDesk />
         </Section>
-        <Section id="pump" title="pump.fun" lede="type these exactly. first buy stays small and public.">
+        <Section
+          id="pump"
+          title="pump.fun"
+          lede="type these exactly. first buy stays small and public."
+        >
           <CopyBlock title="name" value={pump.name} />
           <CopyBlock title="ticker" value={pump.ticker} />
           <CopyBlock title="description" value={pump.description} />
@@ -479,11 +492,7 @@ export function Desk() {
           {thread.map((post, i) => (
             <CopyBlock key={post} title={`thread ${i + 1}/${thread.length}`} value={post} />
           ))}
-          {coin.id === "hippo" ? (
-            <CopyBlock title="reply: is this the sticker shop?" value={xShopReply()} />
-          ) : (
-            <CopyBlock title="reply: is this the movie?" value={xMovieReply()} />
-          )}
+          <CopyBlock title="reply: is this the sticker shop?" value={xShopReply()} />
           <CopyBlock title="reply: clone ca" value={xCloneReply(ctx)} />
         </Section>
         <Section id="telegram" title="telegram" lede="three pins: welcome, rules, ca.">
@@ -492,15 +501,15 @@ export function Desk() {
           <CopyBlock title="pin — rules" value={tgRules(coin)} />
           <CopyBlock title="pin — ca" value={tgCaPin(coin, ctx)} />
         </Section>
-        <Section
-          id="images"
-          title="image prompts"
-          lede="still life only. no face. no film stills."
-        >
+        <Section id="images" title="image prompts" lede="original art only. no shop photos.">
           <CopyBlock title="token icon" value={coin.imageIcon} />
           <CopyBlock title="x banner 1500×500" value={coin.imageBanner} />
         </Section>
-        <Section id="legal" title="name / likeness" lede="not legal advice. read it before you mint.">
+        <Section
+          id="legal"
+          title="name / likeness"
+          lede="not legal advice. read it before you mint."
+        >
           <article className="rounded-xl bg-surface p-5 text-ink shadow-card sm:p-6">
             <p className="flex items-center gap-2 font-display text-sm uppercase">
               <Ban className="size-4 text-danger" />

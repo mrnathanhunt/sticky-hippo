@@ -27,16 +27,7 @@ export function SiteHeader() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-3 px-4 sm:h-[4.5rem] sm:px-6">
-        {coin.id === "hippo" ? (
-          <span className="hidden w-10 sm:block" />
-        ) : (
-          <Link
-            to="/whoizi"
-            className="hidden min-w-0 font-display text-xs uppercase text-muted sm:inline"
-          >
-            both
-          </Link>
-        )}
+        <span className="hidden w-10 sm:block" />
         <Link to={coin.path} className="min-w-0" aria-label={`${coin.name} home`}>
           <Wordmark size="sm" />
         </Link>
@@ -61,9 +52,7 @@ export function SiteHeader() {
               to="/picks"
               className={cn(
                 "rounded-md px-2.5 py-1.5 font-display text-xs uppercase",
-                path === "/picks"
-                  ? "bg-gold text-paper"
-                  : "text-muted hover:bg-current/8",
+                path === "/picks" ? "bg-gold text-paper" : "text-muted hover:bg-current/8",
               )}
             >
               picks
