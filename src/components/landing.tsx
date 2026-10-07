@@ -113,10 +113,17 @@ function Hero() {
               <ArrowDown />
             </a>
           </Button>
+          {coin.telegramChannelUrl ? (
+            <Button size="lg" variant="outline" asChild>
+              <a href={coin.telegramChannelUrl} target="_blank" rel="noreferrer">
+                telegram channel
+              </a>
+            </Button>
+          ) : null}
           {live.telegramUrl ? (
             <Button size="lg" variant="outline" asChild>
               <a href={live.telegramUrl} target="_blank" rel="noreferrer">
-                telegram
+                {coin.telegramChannelUrl ? "telegram chat" : "telegram"}
               </a>
             </Button>
           ) : null}

@@ -23,9 +23,19 @@ export function SiteFooter() {
               x
             </a>
           ) : null}
+          {coin.telegramChannelUrl ? (
+            <a
+              href={coin.telegramChannelUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="hover:text-gold"
+            >
+              telegram channel
+            </a>
+          ) : null}
           {live.telegramUrl ? (
             <a href={live.telegramUrl} target="_blank" rel="noreferrer" className="hover:text-gold">
-              telegram
+              {coin.telegramChannelUrl ? "telegram chat" : "telegram"}
             </a>
           ) : null}
           {coin.id === "hippo" ? (
