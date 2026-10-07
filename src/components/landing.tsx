@@ -113,6 +113,13 @@ function Hero() {
               <ArrowDown />
             </a>
           </Button>
+          {live.telegramUrl ? (
+            <Button size="lg" variant="outline" asChild>
+              <a href={live.telegramUrl} target="_blank" rel="noreferrer">
+                telegram
+              </a>
+            </Button>
+          ) : null}
           <ActionTap />
         </div>
       </div>
