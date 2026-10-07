@@ -28,6 +28,7 @@ export type Coin = {
   mint: string;
   xUrl: string;
   telegramUrl: string;
+  telegramChannelUrl?: string;
   tickerBits: string[];
   pillars: Pillar[];
   faq: FaqItem[];
@@ -68,6 +69,7 @@ export const COINS: Record<CoinId, Coin> = {
     mint: "9v7HTUYNia5DFcJk8wCpjqk9gUifkpo5FGnTawjzpump",
     xUrl: "",
     telegramUrl: "https://t.me/stickyhippomeme",
+    telegramChannelUrl: "https://t.me/stickyhippo",
     tickerBits: [
       "$HIPPO",
       "the hippo that sticks",
