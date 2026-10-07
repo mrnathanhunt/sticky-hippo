@@ -67,7 +67,7 @@ export const COINS: Record<CoinId, Coin> = {
     action: "unstick",
     mint: "9v7HTUYNia5DFcJk8wCpjqk9gUifkpo5FGnTawjzpump",
     xUrl: "",
-    telegramUrl: "",
+    telegramUrl: "https://t.me/stickyhippomeme",
     tickerBits: [
       "$HIPPO",
       "the hippo that sticks",
